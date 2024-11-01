@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách rạp chiếu</title>
+    <link rel="stylesheet" href="/css/cinema.css">
+</head>
+<body>
+<h1>Danh sách rạp chiếu</h1>
+
+<table class="cinema-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên rạp</th>
+        <th>Địa chỉ</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cinema : ${cinemas}">
+        <td th:text="${cinema.idCinema}"></td>
+        <td th:text="${cinema.name}"></td>
+        <td th:text="${cinema.address}"></td>
+        <td>
+            <a th:href="@{/admin/cinemas/edit/{id}(id=${cinema.idCinema})}" class="action-link edit">Sửa</a> |
+            <a th:href="@{/admin/cinemas/delete/{id}(id=${cinema.idCinema})}" class="action-link delete">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+ <div class="add">
+     <a href="/cinemas/new" class="btn-add-new">Thêm rạp mới</a>
+ </div>
+
+</body>
+</html>

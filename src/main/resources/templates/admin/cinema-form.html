@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm hoặc Chỉnh sửa Rạp Chiếu</title>
+    <link rel="stylesheet" href="/css/cinema.css">
+</head>
+<body>
+<div class="form-container">
+    <h1 th:text="${cinema.idCinema == null ? 'Thêm Rạp Mới' : 'Chỉnh Sửa Rạp'}"></h1>
+
+    <form th:action="@{/admin/chair}" th:object="${chair}" method="post">
+
+    <label for="name">Tên rạp:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required>
+
+        <label for="address">Địa chỉ:</label>
+        <input type="text" id="address" name="address" th:field="*{address}" required>
+
+        <div class="button-group">
+            <button type="submit" class="btn-submit">Lưu</button>
+            <a href="/admin/cinemas" class="btn-back">Quay lại danh sách</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

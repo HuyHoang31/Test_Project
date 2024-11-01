@@ -1,0 +1,346 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.header{
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.header_ul,.container_navba ,.review_navba {
+    display: flex;
+     padding: 0 30px;
+    align-items: center;
+}
+.header_li,.container_item,.review_item{
+    padding: 0 30px;
+    list-style: none;
+}
+.container_item{
+    position: relative;
+}
+.container_item ::before {
+    content: "";
+    position: absolute;
+    left: 30px;
+    top: 25px;
+    /* bottom: 142px; */
+    width: 0;
+    height: 1.7px;
+    background-color: #3333;
+}
+.container_item :hover{
+    color: #1E90FF;
+}
+.container_item :hover:before{
+    width: 57%;
+
+}
+
+.container_h{
+    width: 24%;
+    padding: 20px 0;
+    position: relative;
+
+}
+.image {
+width: 293px;
+}
+.content{
+    width: 100%;
+    height: 76%;
+    top:20px ;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px;
+    position: absolute;
+    background:rgba(0,0,0,0.6);
+    display: flex;
+    padding: 10px 0;
+    justify-content:center ;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: 0.6s;
+}
+.content:hover{
+opacity: 1;
+}
+.bt{
+    color: white;
+}
+/* befor */
+.header_login ,.from-search{
+    display: flex;
+}
+.header_li a ,.container_item a,.review_item a{
+    text-decoration: none;
+    color: black;
+}
+.img_navar img{
+    width: 150px;
+}
+.header_li img{
+    width: 100px;
+}
+.slide-form{
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+.containers {
+    margin: 30px 30px;
+}
+.container_m ,.review_m {
+    font-size: 30px;
+    font-weight: 500;
+}
+.container_movie{
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    flex-wrap: wrap;
+    margin: 50px;
+}
+.svg {
+    width: 45px;
+    padding: 0 10px;
+}
+.input-search {
+    width: 250px;
+    padding: 0 5px;
+    outline: none;
+
+}
+.btn-submit{
+    border: none;
+    background-color: white;
+}
+
+.img_container{
+    width: 100%;
+    border-radius: 5px;
+    display: block;
+}
+.img_container :hover {
+  width: 100%;
+}
+.container_h h1{
+    padding: 10px 0;
+font-size: 20px;
+}
+.container_soon{
+    display: flex;
+    justify-content: center;
+}
+.review_content{
+    width: 50%;
+}
+.review_img img{
+    width: 90%;
+}
+.review_social{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    column-gap:10px;
+}
+.reviews{
+    margin: 60px;
+    display: flex;
+    justify-content: space-around;
+}
+.social_movie {
+
+}
+.social_h {
+    display: flex;
+}
+.social_img {
+width: 200px;
+}
+.social_title {
+padding: 0 40px;
+}
+.social_titles {
+    padding: 10px 0;
+}
+.social_icon {
+    width: 15px;
+    color: white;
+
+}
+.social_p{
+    color: white;
+}
+.icon-span {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 20px;
+
+
+}
+.background{
+    background-color: #0a4ce6e5;
+
+}
+.white{
+    background-color:    rgb(240,240,240);
+
+}
+.social_number,.social_p{
+    margin: 0;
+    padding: 0 10px;
+
+
+}
+
+.social_svg {
+    display: flex;
+    align-items: center;
+
+}
+.social_h1 {
+    font-size: 20px;
+    line-height: 33px;
+}
+.actical {
+    padding: 50px;
+    background-image: url(https://www.galaxycine.vn/_next/static/media/bg-icon-iphone-x.3b4bcdb7.svg);
+}
+.actical_content {
+    text-align: center;
+}
+.actical_int {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+.actical_app {
+    display: flex;
+
+    margin: 0;
+    list-style: none;
+
+}
+.actical_qr{
+    height: 200px;
+}
+.actical_h1 ,.actical_p , span {
+    color: white;
+}
+span {
+padding: 10px;
+}
+.footer {
+    background-color: var(--white-color);
+    padding-top: 16px ;
+    border-top: 4px solid var(--primary-color);
+}
+.footer__heading {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+.footer__list {
+    padding-left: 0;
+    list-style: none;
+}
+
+.footer-item__link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #737373;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+.footer-item__link:hover {
+    color: var(--primary-color);
+}
+.footer__item-icon {
+    font-size: 1.8rem;
+    margin-top: -1px 8px 0 0;
+}
+.footer__download {
+    display: flex;
+}
+.footer__download-qr {
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--boder-color);
+
+}
+.footer__download-apps {
+    flex: 1;
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.footer__download-app-link {
+    text-decoration: none;
+    color: transparent;
+}
+.footer__download-app-img {
+    height: 16px;
+
+}
+.footer__bottom {
+    padding-top: 8px 0;
+    background-color: #F5F5f5;
+    margin-top: 36px;
+}
+
+.footer__text {
+    margin: 0;
+    font-size: 1.4rem;
+    text-align: center;
+    color: #737373;
+}
+.footer_row {
+    display: flex;
+    justify-content: space-around;
+
+}
+.footer_list{
+    padding: 0;
+    list-style: none;
+}
+.list_item {
+    padding: 5px 0;
+}
+.list_item :hover{
+    color: #F4A460;
+}
+.list_item_a{
+    text-decoration: none;
+    color: #333333;
+}
+.footer__heading{
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.user-name {
+   color: black;
+   cursor: pointer;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 40px; /* Adjust to your needs */
+  right: 0; /* Adjust to align with user-name */
+  z-index: 1000; /* Ensure it appears on top */
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+

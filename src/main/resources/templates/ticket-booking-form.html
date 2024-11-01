@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Đặt Vé</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container my-5">
+    <h1>Đặt Vé Xem Phim</h1>
+    <form th:action="@{/tickets/booking/confirm}" th:object="${ticket}" method="post" class="row g-3">
+        <div class="col-md-6">
+            <label for="showtime" class="form-label">Suất Chiếu:</label>
+            <select id="showtime" th:field="*{showtime}" class="form-select" required>
+                <option th:each="showtime : ${showtimes}" th:value="${showtime.id}" th:text="${showtime.showtimeName}"></option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="ticketType" class="form-label">Loại Vé:</label>
+            <select id="ticketType" th:field="*{ticketType}" class="form-select" required>
+                <option th:each="ticketType : ${ticketTypes}" th:value="${ticketType.id}" th:text="${ticketType.typeName}"></option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="quantity" class="form-label">Số Lượng:</label>
+            <input type="number" id="quantity" th:field="*{quantity}" class="form-control" min="1" required>
+        </div>
+
+        <div class="col-12 mt-4">
+            <button type="submit" class="btn btn-primary">Tiếp Tục</button>
+            <a href="/" class="btn btn-secondary">Hủy</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

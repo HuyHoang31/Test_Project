@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/home.css">
+
+
+
+</head>
+<style>
+    .h1-name {
+    font-size: 20px;
+    padding: 0;
+}
+.user-name{
+padding: 0;
+   color: black;
+}
+</style>
+<body>
+<div class="app">
+    <div class="main">
+        <header class="header">
+            <div class="img_navar">
+                <img src="https://www.galaxycine.vn/_next/static/media/galaxy-logo-mobile.074abeac.png" alt="">
+            </div>
+            <div class="header_navbar">
+                <ul class="header_ul">
+                    <li class="header_li"><a href="" class="header_link"><img
+                            src="https://www.galaxycine.vn/_next/static/media/btn-ticket.42d72c96.webp"
+                            alt=""></a></li>
+                    <li class="header_li">
+                        <a href="javascript:void(0);" class="header_link" onclick="toggleSubmenu()"> Phim</a>
+<!--                        <ul class="contai_ul" id="submenu" style="display: none;">-->
+<!--                            <li class="header_li"><a href="/cinemas" class="contai_a">Danh Sách Rạp</a></li>-->
+<!--                            <li class="header_li"><a href="/movies" class="contai_a">Danh Sách Phim</a></li>-->
+<!--                            <li class="header_li"><a href="/movies/add-movies" class="contai_a">Thêm Phim</a></li>-->
+<!--                        </ul>-->
+                    </li>
+                    <li class="header_li"><a href="" class="header_link">Góc Điện Ảnh </a></li>
+                    <li class="header_li"><a href="" class="header_link">Sự kiện</a></li>
+                    <li class="header_li"><a href="" class="header_link">Rạp/Giá Vé</a></li>
+                </ul>
+            </div>
+
+            <div class="header_login">
+                <form class="from-search">
+                    <input class="input-search" type="text" name="seacrh">
+                    <button class="btn-submit" type="submit">
+                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path
+                                    d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                        </svg>
+                    </button>
+
+                </form>
+                <div class="user-info" onclick="toggleDropdown()">
+                    <div th:if="${session.loggedInUserName != null}">
+                        <!-- Nếu người dùng đã đăng nhập -->
+                        <span class="user-name" th:text="'Xin chào, ' + ${session.loggedInUserName}"></span>
+                        <ul class="dropdown-menu" id="userDropdown">
+                            <li><a href="/profile" class="dropdown-item">Tài Khoản</a></li>
+                           <li><a href="/history" class="dropdown-item">Lịch Sử</a></li>
+                            <div th:if="${session.role == 'admin'}">
+                                <li><a href="/admin" class="dropdown-item">Admin Console</a></li>
+                            </div>
+                            <a href="/logout" class="dropdown-item">Đăng Xuất</a>
+                        </ul>
+                    </div>
+
+                    <div th:if="${session.loggedInUserName == null}">
+                        <!-- Nếu người dùng chưa đăng nhập -->
+                        <a href="/users/login" class="btn btn-primary">Đăng Nhập</a>
+                        <a href="/users/register" class="btn btn-secondary">Đăng Ký</a>
+                    </div>
+                </div>
+
+        </header>
+        <div class="navbar">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://cdn.galaxycine.vn/media/2024/9/24/joker-folie-a-duex-2048_1727174135210.jpg"
+                             class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://cdn.galaxycine.vn/media/2024/9/17/it-end-with-us-2048_1726546444253.jpg"
+                             class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://cdn.galaxycine.vn/media/2024/8/13/transformers-2048_1723544458749.jpg"
+                             class="d-block w-100" alt="...">
+                    </div>
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="slide">
+            <form class="slide-form" action="">
+
+                <div class="dropdown">
+                    <a class="btn btn-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Chọn Phim
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- Lặp qua từng phần tử trong danh sách 'movies' để hiển thị tên phim -->
+                        <li th:each="movie : ${movies}">
+                            <a class="dropdown-item" href="#" th:text="${movie.name}"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown" >
+                    <a class="btn  btn-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Chọn Rạp
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li  th:each="cinema : ${cinemas}" ><a class="dropdown-item" href="#" th:text="${cinema.name}"></a></li>
+                    </ul>
+
+
+                </div>
+                <div class="dropdown">
+                    <a class="btn  btn-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Chọn ngày
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li th:each="showtime : ${showtimes}"><a class="dropdown-item" href="#" th:text="${showtime.date}"> </a></li>
+
+
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <a class="btn btn-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Chọn Xuất Chiếu
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <!-- Kiểm tra nếu mỗi showtime có các phiên (sessions) -->
+                        <li th:each="showtime : ${showtimes}">
+                            <!-- Duyệt qua các phiên (sessions) trong mỗi showtime -->
+                        <li th:each="showSession : ${showtime.sessions}">
+                            <a class="dropdown-item" href="#" th:text="${showSession.startTime}"> </a>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <button type="submit" class="btn btn-warning">Mua Vé Nhanh</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="containers">
+        <div class="container_header">
+            <ul class="container_navba">
+                <li class="container_item container_m">Phim</li>
+                <li class="container_item"><a href="/vew-movies">Đang Chiếu</a></li>
+                <li class="container_item"><a href="">Sắp Chiếu</a></li>
+                <li class="container_item"><a href="">Phim IMAX</a></li>
+                <li class="container_item"><a href="">Toàn Quốc</a></li>
+            </ul>
+<!--            hiển thi phim của trang chủ -->
+            <div class="container_movie">
+                <div class="container_h" th:each="movie : ${movies}">
+                        <img class="image" th:src="@{/uploads/{filename}(filename=${movie.image})}" alt="Hình ảnh phim"  />
+
+                    <h1 th:text="${movie.name}"></h1>
+                    <div class="content">
+                        <button type="button" class="btn btn-outline-danger bt">Trailer</button>
+                        <br>
+                        <form>
+                            <button type="submit" class="btn btn-outline-warning bt">Mua Vé</button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="container_soon">
+                <button type="submit" class="btn btn-outline-warning">Xem thêm</button>
+            </div>
+
+            <hr>
+        </div>
+        <div class="review">
+            <div class="review_header">
+                <ul class="review_navba">
+                    <li class="review_item review_m">Góc Điện Ảnh</li>
+                    <li class="review_item"><a href="">Bình Luận Phim</a></li>
+                    <li class="review_item"><a href="">Blog Điện Ảnh</a></li>
+                </ul>
+            </div>
+            <div class="reviews">
+
+
+                <div class="review_content">
+                    <div class="review_img">
+                        <img src="https://www.galaxycine.vn/media/2024/9/30/750-transformers_1727682750668.jpg" alt="">
+                        <div class="social_titles">
+                            <h1 class="social_h1">[Review] Transformers One: Xuất Sắc Ngoài Mong Đợi</h1>
+                            <div class="social_svg">
+                                <div class="icon-span background">
+
+                                    <svg   aria-hidden="true" focusable="false" data-prefix="fas"
+                                         data-icon="thumbs-up" class="social_icon svg-inline--fa fa-thumbs-up " role="img"
+                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="currentColor"
+                                              d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z">
+                                        </path>
+                                    </svg>
+                                    <p class="social_p">Thích</p>
+                                </div>
+                                <div class="icon-span white">
+                                    <p class="social_number">450</p>
+                                    <svg class="social_icon" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                        <path
+                                                d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="review_social">
+                    <div class="social_movie">
+                        <div class="social_h">
+                            <img class="social_img"
+                                 src="https://www.galaxycine.vn/media/2024/9/24/preview-joker-folie-a-deux-co-chan-dong-the-gioi-nhu-phan-truoc--3_1727150333169.jpg"
+                                 alt="">
+                            <div class="social_title">
+                                <h1 class="social_h1">[Preview] Joker: Folie à Deux: Có Chấn Động Thế Giới Như Phần
+                                    Trước?</h1>
+                                <div class="social_svg">
+                                    <div class="icon-span background">
+
+                                        <svg   aria-hidden="true" focusable="false" data-prefix="fas"
+                                             data-icon="thumbs-up" class =" social_icon svg-inline--fa fa-thumbs-up " role="img"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                  d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z">
+                                            </path>
+                                        </svg>
+                                        <p class="social_p">Thích</p>
+                                    </div>
+                                    <div class="icon-span white">
+                                        <p class="social_number">450</p>
+                                        <svg class="social_icon" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                            <path
+                                                    d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="social_movie">
+                        <div class="social_h">
+                            <img class="social_img"
+                                 src="https://www.galaxycine.vn/media/2024/9/19/cam-phien-ban-lanh-gay-chua-tung-co-tu-co-tich-quen-thuoc--2_1726733641334.jpg"
+                                 alt="">
+                            <div class="social_title">
+                                <h1 class="social_h1">[Review] Cám: Phiên Bản Lạnh Gáy Chưa Từng Có Từ Cổ Tích Quen
+                                    Thuộc!</h1>
+                                <div class="social_svg">
+                                    <div class="icon-span background">
+
+                                        <svg  aria-hidden="true" focusable="false" data-prefix="fas"
+                                             data-icon="thumbs-up" class =" social_icon svg-inline--fa fa-thumbs-up " role="img"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                  d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z">
+                                            </path>
+                                        </svg>
+                                        <p class="social_p">Thích</p>
+                                    </div>
+                                    <div class="icon-span white">
+                                        <p class="social_number">450</p>
+                                        <svg class="social_icon" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                            <path
+                                                    d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social_movie">
+                        <div class="social_h">
+                            <img class="social_img"
+                                 src="https://www.galaxycine.vn/media/2024/9/15/750_1726374205093.jpg" alt="">
+                            <div class="social_title">
+                                <h1 class="social_h1">[Review] Speak No Evil: Tội Ác Ẩn Sau Nụ Cười</h1>
+                                <div class="social_svg">
+                                    <div class="icon-span background">
+
+                                        <svg  aria-hidden="true" focusable="false" data-prefix="fas"
+                                             data-icon="thumbs-up" class="social_icon svg-inline--fa fa-thumbs-up " role="img"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                  d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z">
+                                            </path>
+                                        </svg>
+                                        <p class="social_p">Thích</p>
+                                    </div>
+                                    <div class="icon-span white">
+                                        <p class="social_number">450</p>
+                                        <svg class="social_icon" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                            <path
+                                                    d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="container_soon">
+                <button type="button" class="btn btn-outline-warning">Xem thêm</button>
+            </div>
+            <hr>
+
+            <div class="container_footer">
+                <div class="container_header">
+                    <ul class="container_navba">
+                        <li class="container_item container_m">Tin Khuyến Mãi</li>
+
+                    </ul>
+                    <div class="container_movie">
+                        <div class="container_h">
+                            <img class="image" src="https://cdn.galaxycine.vn/media/2024/4/2/750_1712051414517.jpg" alt="">
+                            <h1>Xem Phim Hay – Ngất Ngây Cùng Bánh Phồng Dế Rec Rec</h1>
+                        </div>
+                        <div class="container_h">
+                            <img class="image" src="https://cdn.galaxycine.vn/media/2024/9/30/shopee-2_1727692944053.jpg" alt="">
+                            <h1>Voucher ShopeePay Giảm 10K Dành Tặng Các Stars!</h1>
+                        </div>
+                        <div class="container_h">
+                            <img class="image" src="https://cdn.galaxycine.vn/media/2024/4/16/750_1713257524954.jpg" alt="">
+                            <h1>Happy Day - Vé Chỉ Từ 50K</h1>
+                        </div>
+                        <div class="container_h">
+                            <img class="image" src="https://cdn.galaxycine.vn/media/2023/5/23/quy-dinh-do-tuoi-digital-1350x900_1684835377244.jpg"
+                                 alt="">
+                            <h1>Tiêu Chí Phân Loại Phim Theo Lứa Tuổi</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actical">
+                <div class="actical_content">
+                    <div class="actical_review">
+                        <h1 class="actical_h1">Đặt Vé Online - Không Lo Trễ Nãi</h1>
+                        <p class="actical_p">Ghét đông đúc ồn ào? Lười xếp hàng mua vé? Hãy quên đi cách mua vé giấy
+                            truyền thống tốn thời gian hay xếp hàng lấy vé online phiền toái.</p>
+                        <div class="actical_int">
+                            <img class="actical_qr"
+                                 src="https://www.galaxycine.vn/_next/static/media/glx-qr-code-1.218ae7da.svg" alt="">
+                            <span>
+                                <i>Or</i>
+                            </span>
+                            <ul class="actical_app">
+                                <li class="actical_item"><img
+                                        src="https://www.galaxycine.vn/_next/static/media/icon-ios-app-store.65ed00df.svg"
+                                        alt="" class="actical_img"></li>
+                                <li class="actical_item"><img
+                                        src="	https://www.galaxycine.vn/_next/static/media/icon-google-app-store.f4c38402.svg"
+                                        alt="" class="actical_img"></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer_row">
+                    <div class="footer_items">
+                        <h3>Giới Thiệu </h3>
+                        <ul class="footer_list">
+                            <li class="list_item"><a href="" class="list_item_a">Về Chúng Tôi</a></li>
+                            <li class="list_item"><a href="" class="list_item_a">Thoả Thuận Sử Dụng </a></li>
+                            <li class="list_item"><a href="" class="list_item_a">Quy Chế Hoạt Động </a></li>
+                            <li class="list_item"><a href="" class="list_item_a">Chính Sách Bảo Mật</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="footer_items">
+                        <h3 class="footer__heading">Góc Điện Ảnh </h3>
+                        <ul class="footer_list">
+
+                            <li class="list_item"><a href="" class="list_item_a">Thể Loại Phim </a></li>
+                            <li class="list_item"><a href="" class="list_item_a">Bình Luận Phim </a></li>
+                            <li class="list_item"><a href="" class="list_item_a">Blog Điện Ảnh</a></li>
+                            <li class="list_item"><a href="" class="list_item_a">Phim Hay Tháng </a></li>
+                            <li class="list_item"><a href="" class="list_item_a">Phim IMAX</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="footer_items">
+                        <h3>Góp Ý</h3>
+                        <ul class="footer_list">
+                            <li class="list_item"><a href="" class="list_item_a">Góp Ý </a></li>
+                            <li class="list_item"><a href="" class="list_item_a">Sale & Services </a></li>
+                            <li class="list_item"><a href="" class="list_item_a">Rạp / Giá Vé</a></li>
+                            <li class="list_item"><a href="" class="list_item_a">Tuyển Dụng </a></li>
+                            <li class="list_item"><a href="" class="list_item_a">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    function toggleSubmenu() {
+        const submenu = document.getElementById("submenu");
+        if (submenu.style.display === "none" || submenu.style.display === "") {
+            submenu.style.display = "block";
+        } else {
+            submenu.style.display = "none";
+        }
+    }
+     function toggleDropdown(event) {
+        event.stopPropagation(); // Ngăn việc đóng menu khi nhấp vào chính menu
+        const dropdown = document.getElementById("userDropdown");
+        dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+    }
+
+    // Ẩn dropdown khi nhấp ra bên ngoài
+    document.addEventListener("click", function(event) {
+        const dropdown = document.getElementById("userDropdown");
+        const userInfo = document.querySelector(".user-info");
+
+        if (!userInfo.contains(event.target)) {
+            dropdown.style.display = "none";
+        }
+    });
+</script>
+</body>
+
+</html>
